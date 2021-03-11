@@ -45,4 +45,19 @@ $app->get("/categories/:idcategory", function($idcategory) {
 
 });
 
+$app->get("/products/:desurl", function($desrul) {
+
+	$product = new Product();
+
+	$product->getFromURL($desrul);
+
+	$page = new Page();
+
+	$page->setTpl("product-detail", [
+		'product'=>$product->getValues(),
+		'catecories'=>$product->getCategories()
+	]);
+
+});
+
  ?>
